@@ -1,3 +1,6 @@
+/* 加载 Google Fonts - 必须在最前面 */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nanum+Pen+Script&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Reenie+Beanie&display=swap');
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -47,73 +50,35 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* 手绘草图风格主题 */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
+  --paper-bg: #F4F4F0;
+  --ink-black: #1A1A18;
+  --graphite: #A0A09A;
+  --graphite-light: rgba(160, 160, 154, 0.4);
+  --accent-orange: #FF6B00;
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.08);
+  --shadow-hard: 2px 4px 10px rgba(0,0,0,0.15);
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #F4F4F0;
+  --foreground: #1A1A18;
+  --card: rgba(255, 255, 255, 0.8);
+  --card-foreground: #1A1A18;
+  --popover: #ffffff;
+  --popover-foreground: #1A1A18;
+  --primary: #FF6B00;
+  --primary-foreground: #ffffff;
+  --secondary: #A0A09A;
+  --secondary-foreground: #1A1A18;
+  --muted: rgba(160, 160, 154, 0.2);
+  --muted-foreground: #A0A09A;
+  --accent: #FF6B00;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --border: rgba(26, 26, 24, 0.15);
+  --input: rgba(26, 26, 24, 0.1);
+  --ring: #FF6B00;
+  --radius: 0;
 }
 
 @layer base {
@@ -122,8 +87,1005 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.02) 100%);
+    font-family: 'Space Mono', monospace;
   }
   html {
     @apply font-sans;
+  }
+}
+
+/* SVG 滤镜定义 */
+.svg-filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* 手绘文字效果 */
+.handwritten {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+}
+
+.sketch-note {
+  font-family: 'Nanum Pen Script', cursive;
+}
+
+.mono-label {
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 10px;
+}
+
+/* 草图线条 */
+.draft-line {
+  stroke: var(--graphite-light);
+  stroke-width: 1px;
+  fill: none;
+}
+
+.draft-line-dash {
+  stroke: var(--graphite-light);
+  stroke-width: 1px;
+  stroke-dasharray: 4 4;
+  fill: none;
+}
+
+/* 手绘按钮 */
+.sketch-button {
+  position: relative;
+  background: transparent;
+  border: 3px solid var(--ink-black);
+  padding: 14px 28px;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 5px 5px 0 var(--ink-black);
+  color: var(--ink-black);
+}
+
+.sketch-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 var(--ink-black);
+}
+
+.sketch-button:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 var(--ink-black);
+}
+
+.sketch-button-primary {
+  background: var(--accent-orange);
+  color: white;
+  border-color: var(--ink-black);
+  box-shadow: 6px 6px 0 var(--ink-black);
+}
+
+.sketch-button-primary:hover {
+  box-shadow: 4px 4px 0 var(--ink-black);
+}
+
+.sketch-button-primary:active {
+  box-shadow: 0 0 0 var(--ink-black);
+}
+
+/* 手绘输入框 */
+.sketch-input {
+  background: rgba(255, 255, 255, 0.8);
+  border: 3px solid var(--ink-black);
+  border-radius: 0;
+  padding: 14px 18px;
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  color: var(--ink-black);
+}
+
+.sketch-input:focus {
+  border-color: var(--accent-orange);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.15);
+}
+
+.sketch-input::placeholder {
+  color: var(--graphite);
+  opacity: 0.6;
+}
+
+/* 草图卡片 */
+.sketch-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 3px solid var(--ink-black);
+  box-shadow: var(--shadow-hard);
+  position: relative;
+  padding: 24px;
+}
+
+.sketch-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: -8px;
+  bottom: -8px;
+  border: 1px dashed var(--graphite-light);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 手绘标注 */
+.annotation {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--graphite);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+}
+
+.note-hand {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 20px;
+  color: var(--graphite);
+  text-transform: none;
+  letter-spacing: 1px;
+}
+
+/* 铅笔碎屑装饰 */
+.shaving {
+  position: absolute;
+  background: #D8D8D4;
+  border-radius: 50%;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  pointer-events: none;
+}
+
+/* 页面容器 */
+.workspace {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* 物理工具装饰 */
+.physical-tools {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* 机械铅笔 */
+.mech-pencil {
+  position: absolute;
+  top: -50px;
+  left: 8vw;
+  width: 14px;
+  height: 450px;
+  background: linear-gradient(to right, #e0e0e0 0%, #ffffff 30%, #a0a0a0 100%);
+  border-radius: 7px;
+  transform: rotate(25deg);
+  box-shadow: 15px 15px 20px rgba(0,0,0,0.15), inset -2px 0 5px rgba(0,0,0,0.1);
+}
+
+.mech-pencil::before {
+  content: '';
+  position: absolute;
+  bottom: 70px;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: repeating-linear-gradient(to bottom, #333, #333 2px, #222 2px, #222 4px);
+  border-radius: 2px;
+}
+
+.mech-pencil::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 9px;
+  height: 70px;
+  background: linear-gradient(to right, #999, #ccc, #666);
+  clip-path: polygon(0 0, 100% 0, 80% 80%, 55% 100%, 45% 100%, 20% 80%);
+}
+
+.mech-lead {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 12px;
+  background: #444;
+}
+
+/* 黑色铅笔 */
+.black-pencil {
+  position: absolute;
+  bottom: -120px;
+  left: -60px;
+  width: 500px;
+  height: 16px;
+  background: linear-gradient(to bottom, #2a2a2a 0%, #111 50%, #2a2a2a 100%);
+  transform: rotate(-35deg);
+  box-shadow: 10px -10px 20px rgba(0,0,0,0.2);
+}
+
+.black-pencil::after {
+  content: '';
+  position: absolute;
+  right: -45px;
+  top: 0;
+  width: 45px;
+  height: 100%;
+  background: #d4b58e;
+  clip-path: polygon(0 0, 0 100%, 100% 50%);
+}
+
+.black-pencil-lead {
+  position: absolute;
+  right: -45px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 5px;
+  background: #222;
+  clip-path: polygon(0 0, 0 100%, 100% 50%);
+  z-index: 2;
+}
+
+.pencil-stripe {
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #FFB000;
+}
+
+/* 细线笔 */
+.fineliner {
+  position: absolute;
+  top: 30vh;
+  right: -120px;
+  width: 400px;
+  height: 14px;
+  background: #111;
+  border-radius: 7px;
+  transform: rotate(-15deg);
+  box-shadow: -10px 15px 25px rgba(0,0,0,0.2), inset 0 2px 5px rgba(255,255,255,0.1);
+}
+
+.fineliner-cap {
+  position: absolute;
+  left: -35px;
+  top: 0;
+  width: 35px;
+  height: 100%;
+  background: linear-gradient(to bottom, #333, #111);
+  border-radius: 5px 0 0 5px;
+}
+
+.fineliner-tip {
+  position: absolute;
+  left: -45px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 5px;
+  background: #111;
+}
+
+/* 橡皮擦 */
+.eraser {
+  position: absolute;
+  top: 12vh;
+  right: 12vw;
+  width: 55px;
+  height: 40px;
+  background: #C4C4C0;
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  transform: rotate(15deg);
+  box-shadow:
+    inset 2px 2px 5px rgba(255,255,255,0.8),
+    inset -3px -3px 8px rgba(0,0,0,0.1),
+    15px 20px 20px rgba(0,0,0,0.15);
+  filter: contrast(0.9) sepia(0.1);
+}
+
+/* 碎屑装饰 */
+.debris {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* 页面过渡动画 */
+@keyframes sketch-reveal {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+    transform: rotate(-2deg);
+    opacity: 0;
+  }
+  100% {
+    clip-path: circle(150% at 50% 50%);
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.sketch-transition {
+  animation: sketch-reveal 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.fade-out {
+  animation: fade-out 0.5s ease-out forwards;
+}
+
+/* 笔记本书页样式 */
+.notebook-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f1e8 0%, #e8dcc8 100%);
+}
+
+.notebook-content {
+  width: 100%;
+  max-width: 42rem;
+  background: #fefdf5;
+  padding: 4rem 3rem;
+  border-radius: 4px;
+  box-shadow: 
+    0 2px 8px rgba(0,0,0,0.1),
+    inset 0 0 0 1px rgba(139,69,19,0.1);
+  position: relative;
+  background-image: 
+    repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      rgba(139,69,19,0.15) 31px,
+      rgba(139,69,19,0.15) 32px
+    );
+}
+
+.notebook-content::before,
+.notebook-content::after {
+  content: '';
+  position: absolute;
+  background: #fefdf5;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.notebook-content::before {
+  width: 100%;
+  height: 20px;
+  top: -10px;
+  left: 5px;
+  transform: rotate(-1deg);
+  border-radius: 4px 4px 0 0;
+}
+
+.notebook-content::after {
+  width: 100%;
+  height: 20px;
+  bottom: -10px;
+  right: 5px;
+  transform: rotate(1deg);
+  border-radius: 0 0 4px 4px;
+}
+
+.notebook-field {
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.notebook-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-ma-shan), var(--font-patrick), 'Ma Shan Zheng', 'Patrick Hand', cursive, sans-serif;
+  font-size: 1.5rem;
+  line-height: 32px;
+  color: #2c1810;
+  resize: none;
+  padding: 0;
+}
+
+.notebook-input::placeholder {
+  color: rgba(139,69,19,0.3);
+  font-style: italic;
+}
+
+.notebook-button {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+  padding: 1rem 3rem;
+  height: 56px;
+  border-radius: 12px;
+  background: rgba(254, 253, 245, 0.95);
+  backdrop-filter: blur(8px);
+  border: 3px solid #2c1810;
+  color: #2c1810;
+  font-family: var(--font-ma-shan), var(--font-patrick), 'Ma Shan Zheng', 'Patrick Hand', cursive;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow:
+    3px 3px 0 #2c1810,
+    0 4px 12px rgba(0,0,0,0.2);
+  transition: all 0.2s;
+  z-index: 1000;
+  white-space: nowrap;
+}
+
+.notebook-button:hover:not(:disabled) {
+  transform: translateX(-50%) rotate(-1deg) scale(1.05);
+  box-shadow:
+    4px 4px 0 #2c1810,
+    0 6px 16px rgba(0,0,0,0.3);
+}
+
+.notebook-button:active:not(:disabled) {
+  transform: translateX(-50%) rotate(-1deg) scale(0.98);
+  box-shadow:
+    2px 2px 0 #2c1810,
+    0 2px 8px rgba(0,0,0,0.2);
+}
+
+.notebook-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 加载动画 */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(254, 253, 245, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border-radius: 4px;
+}
+
+.seed-animation {
+  font-size: 4rem;
+  animation: grow 2s ease-in-out infinite;
+}
+
+@keyframes grow {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.2) translateY(-10px);
+  }
+}
+
+.progress-text {
+  margin-top: 2rem;
+  font-family: var(--font-ma-shan), var(--font-patrick), cursive;
+  font-size: 1.5rem;
+  color: #2c1810;
+}
+
+/* 树页面 */
+.tree-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f1e8 0%, #e8dcc8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.tree-notebook {
+  width: 100%;
+  max-width: 700px;
+  position: relative;
+  background: #fefdf5;
+  border-radius: 3px;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.1),
+    inset 0 0 0 1px rgba(139,69,19,0.1);
+}
+
+.notebook-page-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 29px,
+      rgba(139,69,19,0.12) 29px,
+      rgba(139,69,19,0.12) 30px
+    );
+  pointer-events: none;
+}
+
+.tree-svg {
+  width: 100%;
+  display: block;
+}
+
+/* 树枝动画 */
+.tree-branch {
+  stroke-dasharray: var(--branch-length);
+  stroke-dashoffset: var(--branch-length);
+  animation: grow-branch 1.8s ease-out forwards;
+  animation-delay: var(--branch-delay);
+}
+
+@keyframes grow-branch {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 果实动画 */
+.tree-fruit {
+  opacity: 0;
+  transform: scale(0);
+  animation: pop-fruit 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: var(--fruit-delay);
+  transform-origin: center;
+  transform-box: fill-box;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+@keyframes pop-fruit {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tree-fruit:hover {
+  filter: brightness(1.1);
+}
+
+.tree-fruit.highlighted ellipse:nth-child(2) {
+  stroke: #ff6b35;
+  stroke-width: 2.5;
+}
+
+/* 详情页 */
+.detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 100;
+  animation: fade-in 0.3s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.detail-notebook {
+  width: 100%;
+  max-width: 520px;
+  max-height: 85vh;
+  background: #fefdf5;
+  border-radius: 3px;
+  padding: 2.5rem;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  animation: slide-in 0.5s ease-out;
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 29px,
+      rgba(139,69,19,0.1) 29px,
+      rgba(139,69,19,0.1) 30px
+    );
+}
+
+@keyframes slide-in {
+  from {
+    transform: rotateY(-15deg) translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: rotateY(0) translateX(0);
+    opacity: 1;
+  }
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  background: transparent;
+  border: 2px solid #2c1810;
+  font-family: var(--font-ma-shan), cursive;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  color: #2c1810;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: #2c1810;
+  color: #fefdf5;
+}
+
+.detail-title {
+  font-family: var(--font-ma-shan), cursive;
+  font-size: 1.8rem;
+  color: #2c1810;
+  margin-bottom: 0.3rem;
+}
+
+.detail-years {
+  font-family: var(--font-patrick), cursive;
+  font-size: 1rem;
+  color: #8b6914;
+  margin-bottom: 1.2rem;
+}
+
+.detail-desc {
+  font-family: var(--font-ma-shan), cursive;
+  font-size: 1.2rem;
+  line-height: 1.9;
+  color: #2c1810;
+  margin-bottom: 1.5rem;
+}
+
+.chat-btn {
+  display: inline-block;
+  padding: 0.6rem 2rem;
+  background: #ff6b35;
+  border: 2px solid #2c1810;
+  color: white;
+  font-family: var(--font-ma-shan), cursive;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #2c1810;
+  transition: all 0.2s;
+}
+
+.chat-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 #2c1810;
+}
+
+.loading-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ma-shan), cursive;
+  font-size: 2rem;
+  color: #2c1810;
+  background: linear-gradient(135deg, #f5f1e8 0%, #e8dcc8 100%);
+}
+
+/* 聊天页面 */
+.chat-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f1e8 0%, #e8dcc8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.chat-notebook {
+  width: 100%;
+  max-width: 800px;
+  height: 90vh;
+  max-height: 800px;
+  position: relative;
+  background: #fefdf5;
+  border-radius: 3px;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.1),
+    inset 0 0 0 1px rgba(139,69,19,0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-notebook::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 29px,
+      rgba(139,69,19,0.08) 29px,
+      rgba(139,69,19,0.08) 30px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 聊天头部 */
+.chat-header {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid rgba(139,69,19,0.15);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(254, 253, 245, 0.95);
+}
+
+.chat-header .back-btn {
+  margin: 0;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.chat-title {
+  font-family: var(--font-ma-shan), cursive;
+  font-size: 1.4rem;
+  color: #2c1810;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.chat-subtitle {
+  font-family: var(--font-patrick), cursive;
+  font-size: 0.95rem;
+  color: #8b6914;
+}
+
+/* 消息列表 */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem 2rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* 聊天气泡 */
+.chat-bubble {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  max-width: 80%;
+  animation: fade-in 0.3s ease-out;
+}
+
+.chat-bubble.user {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.chat-bubble.assistant {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.bubble-label {
+  font-family: var(--font-patrick), cursive;
+  font-size: 0.8rem;
+  color: #8b6914;
+  padding: 0 0.5rem;
+}
+
+.bubble-content {
+  font-family: var(--font-ma-shan), cursive;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #2c1810;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  position: relative;
+  word-break: break-word;
+}
+
+.chat-bubble.user .bubble-content {
+  background: rgba(255, 107, 53, 0.15);
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  border-bottom-right-radius: 4px;
+}
+
+.chat-bubble.assistant .bubble-content {
+  background: rgba(139, 69, 19, 0.08);
+  border: 2px solid rgba(139, 69, 19, 0.2);
+  border-bottom-left-radius: 4px;
+}
+
+.bubble-content.typing {
+  color: #8b6914;
+  font-style: italic;
+}
+
+/* 输入区域 */
+.chat-input-area {
+  position: relative;
+  z-index: 1;
+  padding: 1rem 2rem 1.5rem;
+  border-top: 2px solid rgba(139,69,19,0.15);
+  background: rgba(254, 253, 245, 0.95);
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-end;
+}
+
+.chat-input {
+  flex: 1;
+  background: transparent;
+  border: 2px solid rgba(139, 69, 19, 0.25);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-family: var(--font-ma-shan), var(--font-patrick), cursive;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #2c1810;
+  resize: none;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.chat-input:focus {
+  border-color: rgba(255, 107, 53, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.chat-input::placeholder {
+  color: rgba(139, 69, 19, 0.4);
+}
+
+.chat-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.send-btn {
+  padding: 0.8rem 1.5rem;
+  background: #ff6b35;
+  border: 2px solid #2c1810;
+  border-radius: 10px;
+  color: white;
+  font-family: var(--font-ma-shan), cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #2c1810;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.send-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 #2c1810;
+}
+
+.send-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 1px 1px 0 #2c1810;
+}
+
+.send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 2px 2px 0 #2c1810;
+}
+
+/* 滚动条样式 */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(139, 69, 19, 0.2);
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 69, 19, 0.35);
+}
+
+/* 响应式 */
+@media (max-width: 640px) {
+  .chat-page {
+    padding: 0;
+  }
+
+  .chat-notebook {
+    height: 100vh;
+    max-height: none;
+    border-radius: 0;
+  }
+
+  .chat-header {
+    padding: 1rem;
+  }
+
+  .chat-title {
+    font-size: 1.1rem;
+  }
+
+  .chat-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .chat-messages {
+    padding: 1rem;
+  }
+
+  .chat-bubble {
+    max-width: 90%;
+  }
+
+  .bubble-content {
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
+  }
+
+  .chat-input-area {
+    padding: 0.8rem 1rem 1rem;
+  }
+
+  .send-btn {
+    padding: 0.7rem 1.2rem;
   }
 }
