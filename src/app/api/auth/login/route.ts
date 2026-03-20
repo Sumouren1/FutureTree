@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
   }
 
   // 使用真实 OAuth
-  const authUrl = process.env.SECONDME_AUTH_URL || 'https://go.second.me/oauth/';
+  const authUrl = process.env.SECONDME_AUTH_URL || 'https://second-me.cn/oauth';
   const redirectUri = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://futuretree.online'}/api/auth/callback`;
   const state = Math.random().toString(36).substring(7);
 
