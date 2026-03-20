@@ -16,6 +16,11 @@ export default function FuturePage() {
   const [userId, setUserId] = useState<string>('guest');
 
   useEffect(() => {
+    // 等待 params.id 可用
+    if (!params.id) return;
+
+    const futureId = parseInt(params.id as string) || 1;
+
     // 尝试读取 futureTree（新格式）或 futures（旧格式）
     const storedTree = localStorage.getItem('futureTree');
     const storedFutures = localStorage.getItem('futures');
@@ -23,13 +28,11 @@ export default function FuturePage() {
     if (storedTree) {
       const data: UserFutureTree = JSON.parse(storedTree);
       setTreeData(data);
-      const futureId = parseInt(params.id as string);
       const found = data.futures.find(f => f.id === futureId);
       setFuture(found || null);
     } else if (storedFutures) {
       // 兼容旧格式
       const futures = JSON.parse(storedFutures);
-      const futureId = parseInt(params.id as string);
       const found = futures.find((f: Future) => f.id === futureId);
       setFuture(found || null);
       setTreeData({
@@ -41,7 +44,7 @@ export default function FuturePage() {
     } else {
       // 没有存储数据，使用默认数据
       const defaultFuture: Future = {
-        id: parseInt(params.id as string) || 1,
+        id: futureId,
         title: '探索中的未来',
         category: '成长',
         summary: '这是一个正在探索的未来可能性',
