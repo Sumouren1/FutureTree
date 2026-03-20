@@ -188,6 +188,13 @@ export default function TreePage() {
     return { branches: allBranches, fruits: allFruits };
   }, [futures]);
 
+  const [hasStoredData, setHasStoredData] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('futures');
+    setHasStoredData(!!stored && stored !== 'undefined');
+  }, []);
+
   const handleFruitClick = (future: Future) => {
     if (highlightedId !== null) return;
     setHighlightedId(future.id);
@@ -306,6 +313,10 @@ export default function TreePage() {
             <p className="detail-years" style={{ fontSize: '1rem' }}>{selectedFuture.years} 年后</p>
             <p className="detail-desc" style={{ fontSize: '1.2rem', lineHeight: 2 }}>{selectedFuture.description}</p>
             <button className="chat-btn" onClick={() => {
+              if (!hasStoredData) {
+                alert('请先创建未来树！点击"开始探索"并填写表单生成你的未来。');
+                return;
+              }
               router.push(`/future/${selectedFuture.id}`);
             }}>与未来的自己对话</button>
           </div>
