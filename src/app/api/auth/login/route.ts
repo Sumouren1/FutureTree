@@ -40,6 +40,7 @@ export async function GET(request: NextRequest) {
     redirect_uri: redirectUri,
     response_type: 'code',
     state,
+    scope: 'user.info chat',
   });
 
   return NextResponse.redirect(`${authUrl}?${params.toString()}`);
