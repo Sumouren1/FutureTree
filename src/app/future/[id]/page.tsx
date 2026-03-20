@@ -25,20 +25,31 @@ export default function FuturePage() {
     const storedTree = localStorage.getItem('futureTree');
     const storedFutures = localStorage.getItem('futures');
 
-    if (storedTree) {
-      const data: UserFutureTree = JSON.parse(storedTree);
-      setTreeData(data);
-      const found = data.futures.find(f => f.id === futureId);
+    // 安全解析 JSON，处理 "undefined" 字符串等情况
+    const safeParse = (str: string | null) => {
+      if (!str || str === 'undefined' || str === 'null') return null;
+      try {
+        return JSON.parse(str);
+      } catch {
+        return null;
+      }
+    };
+
+    const treeDataParsed = safeParse(storedTree);
+    const futuresParsed = safeParse(storedFutures);
+
+    if (treeDataParsed && treeDataParsed.futures) {
+      setTreeData(treeDataParsed);
+      const found = treeDataParsed.futures.find((f: Future) => f.id === futureId);
       setFuture(found || null);
-    } else if (storedFutures) {
+    } else if (futuresParsed && Array.isArray(futuresParsed)) {
       // 兼容旧格式
-      const futures = JSON.parse(storedFutures);
-      const found = futures.find((f: Future) => f.id === futureId);
+      const found = futuresParsed.find((f: Future) => f.id === futureId);
       setFuture(found || null);
       setTreeData({
         id: Date.now().toString(),
         userInput: { confusion: '', status: '职场新人', interests: [], timeline: 3 },
-        futures,
+        futures: futuresParsed,
         createdAt: Date.now(),
       });
     } else {
