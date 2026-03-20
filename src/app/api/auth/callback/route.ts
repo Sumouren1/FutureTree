@@ -7,16 +7,28 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(new URL('/landing', request.url));
   }
 
+  // 检查环境变量
+  const clientId = process.env.SECONDME_CLIENT_ID;
+  const clientSecret = process.env.SECONDME_CLIENT_SECRET;
+
+  if (!clientId || !clientSecret) {
+    console.error('Missing OAuth environment variables in callback');
+    return NextResponse.json(
+      { error: 'OAuth2 application not configured. Please set SECONDME_CLIENT_ID and SECONDME_CLIENT_SECRET environment variables.' },
+      { status: 500 }
+    );
+  }
+
   try {
     const tokenUrl = process.env.SECONDME_TOKEN_URL || 'https://api.mindverse.com/gate/lab/api/oauth/token/code';
-    const redirectUri = `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/auth/callback`;
+    const redirectUri = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://futuretree.online'}/api/auth/callback`;
 
     const params = new URLSearchParams({
       grant_type: 'authorization_code',
       code,
       redirect_uri: redirectUri,
-      client_id: process.env.SECONDME_CLIENT_ID!,
-      client_secret: process.env.SECONDME_CLIENT_SECRET!,
+      client_id: clientId,
+      client_secret: clientSecret,
     });
 
     const tokenResponse = await fetch(tokenUrl, {
