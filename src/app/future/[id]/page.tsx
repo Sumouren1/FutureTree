@@ -16,30 +16,41 @@ export default function FuturePage() {
   const [userId, setUserId] = useState<string>('guest');
 
   useEffect(() => {
-    // 尝试读取 futureTree（新格式）或 futures（旧格式）
-    const storedTree = localStorage.getItem('futureTree');
-    const storedFutures = localStorage.getItem('futures');
+    try {
+      // 尝试读取 futureTree（新格式）或 futures（旧格式）
+      const storedTree = localStorage.getItem('futureTree');
+      const storedFutures = localStorage.getItem('futures');
 
-    if (storedTree) {
-      const data: UserFutureTree = JSON.parse(storedTree);
-      setTreeData(data);
-      const futureId = parseInt(params.id as string);
-      const found = data.futures.find(f => f.id === futureId);
-      setFuture(found || null);
-    } else if (storedFutures) {
-      // 兼容旧格式
-      const futures = JSON.parse(storedFutures);
-      const futureId = parseInt(params.id as string);
-      const found = futures.find((f: Future) => f.id === futureId);
-      setFuture(found || null);
-      setTreeData({
-        id: Date.now().toString(),
-        userInput: { confusion: '', status: '职场新人', interests: [], timeline: 3 },
-        futures,
-        createdAt: Date.now(),
-      });
-    } else {
-      router.push('/');
+      if (storedTree) {
+        const data: UserFutureTree = JSON.parse(storedTree);
+        setTreeData(data);
+        const futureId = parseInt(params.id as string);
+        const found = data.futures.find(f => f.id === futureId);
+        if (!found) {
+          console.error('Future not found:', futureId);
+        }
+        setFuture(found || null);
+      } else if (storedFutures) {
+        // 兼容旧格式
+        const futures = JSON.parse(storedFutures);
+        const futureId = parseInt(params.id as string);
+        const found = futures.find((f: Future) => f.id === futureId);
+        setFuture(found || null);
+        setTreeData({
+          id: Date.now().toString(),
+          userInput: { confusion: '', status: '职场新人', interests: [], timeline: 3 },
+          futures,
+          createdAt: Date.now(),
+        });
+      } else {
+        // 没有数据，重定向到首页
+        router.push('/landing');
+        return;
+      }
+    } catch (error) {
+      console.error('Error loading data:', error);
+      setFuture(null);
+      setTreeData(null);
     }
     setLoading(false);
   }, [params.id, router]);
@@ -60,10 +71,28 @@ export default function FuturePage() {
     fetchUserId();
   }, []);
 
-  if (loading || !treeData || !future) {
+  if (loading) {
     return (
-      <div className="workspace">
-        <div className="handwritten text-6xl text-accent-orange">Loading...</div>
+      <div className="h-screen flex items-center justify-center bg-background">
+        <div className="handwritten text-4xl text-accent-orange">加载中...</div>
+      </div>
+    );
+  }
+
+  if (!treeData || !future) {
+    return (
+      <div className="h-screen flex flex-col items-center justify-center bg-background p-6">
+        <div className="sketch-card p-8 max-w-md text-center">
+          <p className="handwritten text-3xl text-ink-black mb-4">
+            未来未找到
+          </p>
+          <p className="sketch-note text-graphite mb-6">
+            你需要先创建未来树才能查看详情
+          </p>
+          <Link href="/form" className="sketch-button-primary inline-block px-8 py-3">
+            创建未来
+          </Link>
+        </div>
       </div>
     );
   }
